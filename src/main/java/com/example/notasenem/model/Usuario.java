@@ -18,8 +18,12 @@ public class Usuario implements Serializable {
     private String senha;
     private String nome;
     private int idade;
-    private float notas;
-    private int cpf;
+    private float notaLiguagem;
+    private float notaCienciasHumanas;
+    private float notaCienciasDaNatureza;
+    private float notaMatematica;
+    private float redação;
+    private String cpf;
 
     public Long getId() {
         return id;
@@ -61,20 +65,52 @@ public class Usuario implements Serializable {
         this.idade = idade;
     }
 
-    public float getNotas() {
-        return notas;
+    public float getNotaLiguagem() {
+        return notaLiguagem;
     }
 
-    public void setNotas(float notas) {
-        this.notas = notas;
+    public void setNotaLiguagem(float notaLiguagem) {
+        this.notaLiguagem = notaLiguagem;
     }
 
-    public int getCpf() {
+    public float getNotaCienciasHumanas() {
+        return notaCienciasHumanas;
+    }
+
+    public void setNotaCienciasHumanas(float notaCienciasHumanas) {
+        this.notaCienciasHumanas = notaCienciasHumanas;
+    }
+
+    public float getNotaCienciasDaNatureza() {
+        return notaCienciasDaNatureza;
+    }
+
+    public void setNotaCienciasDaNatureza(float notaCienciasDaNatureza) {
+        this.notaCienciasDaNatureza = notaCienciasDaNatureza;
+    }
+
+    public float getNotaMatematica() {
+        return notaMatematica;
+    }
+
+    public void setNotaMatematica(float notaMatematica) {
+        this.notaMatematica = notaMatematica;
+    }
+
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public float getRedação() {
+        return redação;
+    }
+
+    public void setRedação(float redação) {
+        this.redação = redação;
     }
 
     @Override

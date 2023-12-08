@@ -22,18 +22,43 @@ public class IndexController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity <Usuario> BuscaDeUsuario(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<Usuario> buscaDeUsuario(@PathVariable(value = "id") Long id) {
 
         Optional<Usuario> usuario = usuarioRepository.findById(id);
 
-        return new ResponseEntity(usuario.get() ,HttpStatus.OK);
+        return new ResponseEntity(usuario.get(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/", produces = "application/json")
-    public ResponseEntity<List<Usuario>> usuario(){
+    public ResponseEntity<List<Usuario>> usuario() {
 
         List<Usuario> list = usuarioRepository.findAll();
 
         return new ResponseEntity<List<Usuario>>(list, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/{idUsuario}/media", produces = "application/json")
+    public ResponseEntity<Float> mediaDoInscrito(@PathVariable(value = "idUsuario") Long idUsuario) {
+
+        Optional<Usuario> usuario = usuarioRepository.findById(idUsuario);
+
+        float media;
+
+        if (usuario.isPresent()) {
+             media = (usuario.get().getRedacao() +
+                    usuario.get().getNotaMatematica() +
+                    usuario.get().getNotaLiguagem() +
+                    usuario.get().getNotaCienciasDaNatureza() +
+                    usuario.get().getNotaCienciasHumanas()) / 5;
+
+
+        } else {
+            throw new RuntimeException("Usuário não encontrado.");
+        }
+
+        return new ResponseEntity(media ,HttpStatus.OK);
+    }
+
+
 }
+

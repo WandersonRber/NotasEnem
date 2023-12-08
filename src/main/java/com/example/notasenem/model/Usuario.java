@@ -1,9 +1,6 @@
 package com.example.notasenem.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -18,12 +15,12 @@ public class Usuario implements Serializable {
     private String senha;
     private String nome;
     private int idade;
+    private String cpf;
     private float notaLiguagem;
     private float notaCienciasHumanas;
     private float notaCienciasDaNatureza;
     private float notaMatematica;
-    private float redação;
-    private String cpf;
+    private float redacao;
 
     public Long getId() {
         return id;
@@ -105,12 +102,12 @@ public class Usuario implements Serializable {
         this.cpf = cpf;
     }
 
-    public float getRedação() {
-        return redação;
+    public float getRedacao() {
+        return redacao;
     }
 
-    public void setRedação(float redação) {
-        this.redação = redação;
+    public void setRedacao(float redacao) {
+        this.redacao = redacao;
     }
 
     @Override

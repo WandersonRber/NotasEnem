@@ -5,10 +5,7 @@ import com.example.notasenem.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +34,24 @@ public class IndexController {
         return new ResponseEntity<List<Usuario>>(list, HttpStatus.OK);
     }
 
+    @PostMapping(value = "/", produces = "application/json")
+    public ResponseEntity<Usuario> novoInscrito(@RequestBody Usuario usuario) {
+
+        Usuario inscritoSalvo = usuarioRepository.save(usuario);
+
+        return new ResponseEntity<Usuario>(inscritoSalvo, HttpStatus.OK);
+
+    }
+
+    @PutMapping(value = "/", produces = "application/json")
+    public ResponseEntity<Usuario> atualizarIncristo(@RequestBody Usuario usuario) {
+
+        Usuario inscritoAtualizado = usuarioRepository.save(usuario);
+
+        return new ResponseEntity<Usuario>(inscritoAtualizado, HttpStatus.OK);
+
+    }
+
     @GetMapping(value = "/{idUsuario}/media", produces = "application/json")
     public ResponseEntity<Float> mediaDoInscrito(@PathVariable(value = "idUsuario") Long idUsuario) {
 
@@ -45,18 +60,17 @@ public class IndexController {
         float media;
 
         if (usuario.isPresent()) {
-             media = (usuario.get().getRedacao() +
+            media = (usuario.get().getRedacao() +
                     usuario.get().getNotaMatematica() +
                     usuario.get().getNotaLiguagem() +
                     usuario.get().getNotaCienciasDaNatureza() +
                     usuario.get().getNotaCienciasHumanas()) / 5;
 
-
         } else {
             throw new RuntimeException("Usuário não encontrado.");
         }
 
-        return new ResponseEntity(media ,HttpStatus.OK);
+        return new ResponseEntity(media, HttpStatus.OK);
     }
 
 

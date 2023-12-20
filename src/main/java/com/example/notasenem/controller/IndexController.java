@@ -52,6 +52,14 @@ public class IndexController {
 
     }
 
+    @DeleteMapping(value = "/{id}", produces = "application/text")
+    public String deletaInscrito(@PathVariable("id") Long id){
+
+        usuarioRepository.deleteById(id);
+
+        return "ok";
+    }
+
     @GetMapping(value = "/{idUsuario}/media", produces = "application/json")
     public ResponseEntity<Float> mediaDoInscrito(@PathVariable(value = "idUsuario") Long idUsuario) {
 
